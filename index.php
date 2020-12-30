@@ -17,6 +17,10 @@
     </li>
     <li>
       <a href="store.php">Almacén</a>
+      
+    </li>
+    <li>
+      <a href="list.php">Lista</a>
     </li>
     <li>
       <a href="#">Hospital DB</a>
@@ -24,6 +28,7 @@
     <li>
       <a href="#">Permisos</a>
     </li>
+    
   </ul>
   </div>
         
