@@ -102,10 +102,10 @@ if(!empty($_POST)) {
   </form>
   <ul>
     <li>
-      <a href="">List Users</a>
+      <a href="list.php">Lista de Usuarios</a>
     </li>
     <li>
-      <a href="">Add Users</a>
+      <a href="add_products.php">Añadir Producto</a>
     </li>
   </ul>
   </div>
