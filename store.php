@@ -18,7 +18,7 @@ if(!empty($_POST)) {
     $total_pvp = $_POST['total_pvp'];
     
     
-    $sql = "INSERT INTO productos(id, fecha_ingreso, fecha_egreso, cantidad, id_producto, id_factura, id_usuario,
+    $sql = "INSERT INTO productos(Id, fecha_ingreso, fecha_egreso, cantidad, id_producto, id_factura, id_usuario,
     costo, pvp, total_costo, total_pvp) 
             VALUES (:id, :fecha_ingreso, :fecha_egreso, :cantidad, :id_producto, :id_factura, :id_usuario,
     :costo, :pvp, :total_costo, :total_pvp)";

@@ -1,10 +1,7 @@
 <?php
 
 require_once 'config.php';
-
-
-$queryResult = $pdo->query("SELECT * FROM usuarios");
-
+$queryResult = $pdo->query("SELECT * FROM productos");
 
 ?>
 
@@ -16,15 +13,17 @@ $queryResult = $pdo->query("SELECT * FROM usuarios");
   </head>
   <body>
   <div class="container">
-  <h1>Lista de tu Usuarios</h1>
+  <h1>Lista de Productos</h1>
       <a href="index.php">Home</a>
       <table class=table>
           <tr>
               <th>Id</th>
               <th>Nombre</th>
-              <th>Apellido</th>
-              <th>CI</th>
-              <th>Email</th>
+              <th>Marca</th>
+              <th>Modelo</th>
+              <th>SKU</th>
+              <th>Descripción</th>
+              <th>Id_Usuario</th>
               <th>Editar</th>
               <th>Eliminar</th>
           </tr>
@@ -32,20 +31,20 @@ $queryResult = $pdo->query("SELECT * FROM usuarios");
           while($row = $queryResult->fetch(PDO::FETCH_ASSOC)) {
               
               echo '<tr>';
-              echo '<td>'.$row['id'].'</td>';
+              echo '<td>'.$row['Id'].'</td>';
               echo '<td>'.$row['Nombre'].'</td>';
-              echo '<td>'.$row['Apellido'].'</td>';
-              echo '<td>'.$row['CI'].'</td>';
-              echo '<td>'.$row['Email'].'</td>';
-              echo '<td><a href="update.php?id='.$row['id'].'">Editar</a></td>';
-              echo '<td><a href="delete.php?id='.$row['id'].'">Eliminar</a></td>';
+              echo '<td>'.$row['Marca'].'</td>';
+              echo '<td>'.$row['Modelo'].'</td>';
+              echo '<td>'.$row['SKU'].'</td>';
+              echo '<td>'.$row['Descripción'].'</td>';
+              echo '<td>'.$row['Id_Usuario'].'</td>';
+              echo '<td><a href="update.php?id='.$row['Id'].'">Editar</a></td>';
+              echo '<td><a href="delete.php?id='.$row['Id'].'">Eliminar</a></td>';
               echo '</tr>';
           }
               ?>
 
       </table>
-   
-  </div>
-        
+  </div>        
   </body>
 </html>

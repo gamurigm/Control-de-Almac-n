@@ -10,6 +10,13 @@ $query->execute([
     'id' => $id
 ]);
 
-header("Location:list.php");
+header("Location:user_list.php");
+
+$sql = 'DELETE FROM productos WHERE id=:id';
+$query = $pdo->prepare($sql);
+$query->execute([
+    'id' => $id
+]);
+header("location:product_list.php");
 
 ?>

@@ -21,7 +21,10 @@
       
     </li>
     <li>
-      <a href="list.php">Lista</a>
+      <a href="user_list.php">Lista de Usuarios</a>
+    </li>
+    <li>
+      <a href="product_list.php">Lista de Productos</a>
     </li>
     <li>
       <a href="#">Hospital DB</a>
