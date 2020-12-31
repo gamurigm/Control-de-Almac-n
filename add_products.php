@@ -40,7 +40,7 @@ if(!empty($_POST)) {
   </head>
   <body>
     <div class="container">
-      <h1>Añadir Usuario</h1>
+      <h1>Añadir Producto</h1>
       <br>
       <a href="index.php">Home</a>
       <br>
@@ -77,10 +77,10 @@ if(!empty($_POST)) {
   </form>
   <ul>
     <li>
-      <a href="">Lista de Productos</a>
+      <a href="list.php">Lista de Productos</a>
     </li>
     <li>
-      <a href="">Añadir Productos</a>
+      <a href="add_users.php">Añadir Usuarios</a>
     </li>
   </ul>
   </div>

@@ -18,9 +18,9 @@ if(!empty($_POST)) {
     $total_pvp = $_POST['total_pvp'];
     
     
-    $sql = "INSERT INTO productos(id, fecha_ingreso, fecha_egreso, cantidad, id_producto, id_factura, id_usuario
+    $sql = "INSERT INTO productos(id, fecha_ingreso, fecha_egreso, cantidad, id_producto, id_factura, id_usuario,
     costo, pvp, total_costo, total_pvp) 
-            VALUES (:id, :fecha_ingreso, :fecha_egreso, :cantidad, :id_producto, :id_factura, :id_usuario
+            VALUES (:id, :fecha_ingreso, :fecha_egreso, :cantidad, :id_producto, :id_factura, :id_usuario,
     :costo, :pvp, :total_costo, :total_pvp)";
     $query = $pdo->prepare($sql);
     $result = $query->execute([
@@ -49,7 +49,7 @@ if(!empty($_POST)) {
   </head>
   <body>
     <div class="container">
-      <h1>Añadir Usuario</h1>
+      <h1>Almacén</h1>
       <br>
       <a href="index.php">Home</a>
       <br>
@@ -58,26 +58,22 @@ if(!empty($_POST)) {
         if ($result) {
           echo '<div class="alert alert-success">Success!</div>';
         }
-       
-       ?>
+      ?>
 
         <input type="hidden" name="id" id="id">
         <br>
         <label for="">Fecha de Ingreso</label>
-        <input type="date" name="fecha_ingreso" id="fecha_ingreso">
+        <input type="datetime-local" name="fecha_ingreso" id="fecha_ingreso">
         <br>
         <label for="">Fecha de egreso</label>
-        <input type="date" name="fecha_egreso" id="fecha_egreso">
+        <input type="datetime-local" name="fecha_egreso" id="fecha_egreso">
         <br>
         <label for="">Cantidad</label>
         <input type="text" name="cantidad" id="cantidad">
         <br>
         <input type="hidden" name="id_producto" id="id_producto">
-        <br>
         <input type="hidden" name="id_factura" id="id_factura">
-        <br>
         <input type="hidden" name="id_usuario" id="id_usuario">
-        <br>
         <label for="">Costo</label>
         <input type="text" name="costo" id="costo">
         <br>
@@ -93,7 +89,5 @@ if(!empty($_POST)) {
 
         <input type="submit" value="Guardar">
   </form>
-
-        
   </body>
 </html>
