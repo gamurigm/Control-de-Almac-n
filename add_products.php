@@ -77,7 +77,7 @@ if(!empty($_POST)) {
   </form>
   <ul>
     <li>
-      <a href="list.php">Lista de Productos</a>
+      <a href="product_list.php">Lista de Productos</a>
     </li>
     <li>
       <a href="add_users.php">Añadir Usuarios</a>
