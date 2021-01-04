@@ -84,7 +84,7 @@ if(!empty($_POST)) {
         <br>
         <label for="">PVP</label>
         <input type="text" name="pvp" id="pvp">
-        <br>
+          <br>
         <label for="">Total Costo</label>
         <input type="text" name="total_costo" id="total_costo">
         <br>

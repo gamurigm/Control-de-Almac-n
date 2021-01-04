@@ -45,6 +45,8 @@ $queryResult = $pdo->query("SELECT * FROM productos");
               ?>
 
       </table>
+
+      <a href="add_products.php">Añadir Productos</a>
   </div>        
   </body>
 </html>
