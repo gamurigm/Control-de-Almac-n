@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 04, 2021 at 11:52 PM
+-- Generation Time: Jan 05, 2021 at 04:51 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -44,6 +44,19 @@ CREATE TABLE `almacen` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `factura`
+--
+
+CREATE TABLE `factura` (
+  `Id` int(11) UNSIGNED NOT NULL,
+  `Fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Id_usuario` int(11) UNSIGNED NOT NULL,
+  `Id_producto` int(11) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `productos`
 --
 
@@ -56,13 +69,6 @@ CREATE TABLE `productos` (
   `Descripción` text NOT NULL,
   `Id_Usuario` int(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `productos`
---
-
-INSERT INTO `productos` (`Id`, `Nombre`, `Marca`, `Modelo`, `SKU`, `Descripción`, `Id_Usuario`) VALUES
-(5, 'wretyrt', 'retyrut', 'ytruty', 0, 'ruytyioupip', 0);
 
 -- --------------------------------------------------------
 
@@ -99,6 +105,14 @@ ALTER TABLE `almacen`
   ADD KEY `id_usuario` (`Id_usuario`);
 
 --
+-- Indexes for table `factura`
+--
+ALTER TABLE `factura`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `Id_usuario` (`Id_usuario`),
+  ADD KEY `Id_producto` (`Id_producto`);
+
+--
 -- Indexes for table `productos`
 --
 ALTER TABLE `productos`
@@ -121,19 +135,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `almacen`
 --
 ALTER TABLE `almacen`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `Id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `Id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -143,8 +157,16 @@ ALTER TABLE `usuarios`
 -- Constraints for table `almacen`
 --
 ALTER TABLE `almacen`
-  ADD CONSTRAINT `almacen_ibfk_1` FOREIGN KEY (`Id_producto`) REFERENCES `productos` (`Id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `almacen_ibfk_2` FOREIGN KEY (`Id_usuario`) REFERENCES `usuarios` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `almacen_ibfk_1` FOREIGN KEY (`Id_factura`) REFERENCES `factura` (`Id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `almacen_ibfk_2` FOREIGN KEY (`Id_usuario`) REFERENCES `factura` (`Id_usuario`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `almacen_ibfk_3` FOREIGN KEY (`Id_producto`) REFERENCES `factura` (`Id_producto`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `factura`
+--
+ALTER TABLE `factura`
+  ADD CONSTRAINT `factura_ibfk_2` FOREIGN KEY (`Id_producto`) REFERENCES `productos` (`Id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `factura_ibfk_3` FOREIGN KEY (`Id_usuario`) REFERENCES `usuarios` (`id`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

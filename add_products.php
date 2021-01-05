@@ -2,6 +2,9 @@
 
 require_once 'config.php';
 $result = false;
+$sql = "ALTER TABLE `productos` AUTO_INCREMENT = 1 ";
+$query = $pdo->prepare($sql);
+    $result1 = $query->execute();
 
 if(!empty($_POST)) {
 
