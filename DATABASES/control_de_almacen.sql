@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2021 at 04:51 PM
+-- Generation Time: Jan 06, 2021 at 11:09 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -41,6 +41,13 @@ CREATE TABLE `almacen` (
   `Total_pvp` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `almacen`
+--
+
+INSERT INTO `almacen` (`Id`, `Fecha_ingreso`, `Fecha_egreso`, `Cantidad`, `Id_producto`, `Id_factura`, `Id_usuario`, `Costo`, `Pvp`, `Total_costo`, `Total_pvp`) VALUES
+(1, '2021-01-05 23:03:06', NULL, 23, 1, 1, 1, '45', NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -53,6 +60,13 @@ CREATE TABLE `factura` (
   `Id_usuario` int(11) UNSIGNED NOT NULL,
   `Id_producto` int(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `factura`
+--
+
+INSERT INTO `factura` (`Id`, `Fecha`, `Id_usuario`, `Id_producto`) VALUES
+(1, '2021-01-05 23:01:42', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -69,6 +83,13 @@ CREATE TABLE `productos` (
   `Descripción` text NOT NULL,
   `Id_Usuario` int(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `productos`
+--
+
+INSERT INTO `productos` (`Id`, `Nombre`, `Marca`, `Modelo`, `SKU`, `Descripción`, `Id_Usuario`) VALUES
+(1, 'gel', 'hkjh', 'hkjh', 1212121212, 'jkhkjhql', 1);
 
 -- --------------------------------------------------------
 
@@ -90,6 +111,14 @@ CREATE TABLE `usuarios` (
   `Cargo` varchar(20) DEFAULT NULL,
   `Institución` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `Nombre`, `Apellido`, `CI`, `Email`, `Teléfono`, `Profesión`, `Contraseña`, `Usuario`, `Departamento`, `Cargo`, `Institución`) VALUES
+(1, 'eter', 'etr', 'etretretr', 'etretre', 'tretretr', 'etretret', 'e2fd96472cca0ffe0e63de1b3f9ba6', 'tretretre', 'rtetrert', 'rtertetre', 'eretreret'),
+(2, 'gabi', 'jlkj', 'lkj', 'lk', 'jl', 'kj', '48e2e79fec9bc01d9a00e0a8fa68b2', 'l', 'kjl', 'kj', 'lkj');
 
 --
 -- Indexes for dumped tables
@@ -135,19 +164,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `almacen`
 --
 ALTER TABLE `almacen`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `Id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -157,16 +186,22 @@ ALTER TABLE `usuarios`
 -- Constraints for table `almacen`
 --
 ALTER TABLE `almacen`
-  ADD CONSTRAINT `almacen_ibfk_1` FOREIGN KEY (`Id_factura`) REFERENCES `factura` (`Id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `almacen_ibfk_2` FOREIGN KEY (`Id_usuario`) REFERENCES `factura` (`Id_usuario`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `almacen_ibfk_3` FOREIGN KEY (`Id_producto`) REFERENCES `factura` (`Id_producto`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `almacen_factura` FOREIGN KEY (`Id_factura`) REFERENCES `factura` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `almacen_producto` FOREIGN KEY (`Id_producto`) REFERENCES `productos` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `almacen_usuario` FOREIGN KEY (`Id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `factura`
 --
 ALTER TABLE `factura`
-  ADD CONSTRAINT `factura_ibfk_2` FOREIGN KEY (`Id_producto`) REFERENCES `productos` (`Id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `factura_ibfk_3` FOREIGN KEY (`Id_usuario`) REFERENCES `usuarios` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `factura_producto` FOREIGN KEY (`Id_producto`) REFERENCES `productos` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `factura_usuario` FOREIGN KEY (`Id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `productos`
+--
+ALTER TABLE `productos`
+  ADD CONSTRAINT `producto_usuario` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
