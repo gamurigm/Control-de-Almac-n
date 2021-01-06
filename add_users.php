@@ -3,6 +3,11 @@
 require_once 'config.php';
 $result = false;
 
+$sql = "ALTER TABLE `usuarios` AUTO_INCREMENT = 1 ";
+$query = $pdo->prepare($sql);
+    $result1 = $query->execute();
+
+
 if(!empty($_POST)) {
 
     $id = $_POST['id'];
@@ -39,8 +44,7 @@ if(!empty($_POST)) {
         'cargo' => $cargo, 
         'institucion' => $institucion
     ]);
-}
-
+  }
 ?>
 
 <html>

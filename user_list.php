@@ -1,6 +1,7 @@
 <?php
 
 require_once 'config.php';
+
 $queryResult = $pdo->query("SELECT * FROM usuarios");
 
 ?>
@@ -41,6 +42,7 @@ $queryResult = $pdo->query("SELECT * FROM usuarios");
               ?>
               
       </table>
+      <a href="add_users.php">Añadir usuario</a><br>
       <a href="product_list.php">Lista de productos</a>
   </div>
   </body>

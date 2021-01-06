@@ -7,6 +7,11 @@ $fecha=date('Y-m-d H:i:s');
 
 $result = false;
 
+$sql = "ALTER TABLE `store` AUTO_INCREMENT = 1 ";
+$query = $pdo->prepare($sql);
+    $result1 = $query->execute();
+
+
 if(!empty($_POST)) {
 
     $id  = $_POST['id'];

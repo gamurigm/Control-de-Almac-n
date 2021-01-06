@@ -30,6 +30,10 @@ if(!empty($_POST)) {
 
 ]);
 
+
+  
+
+
 $row = $query->fetch(PDO::FETCH_ASSOC);
 $nameValue = $row['nombre'];
 $lastnameValue = $row['apellido'];
